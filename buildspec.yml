@@ -1,0 +1,28 @@
+---
+version: 0.2
+
+phases:
+  pre_build:
+    commands: 
+      - "echo Before Building the application..."
+  build:
+    commands:
+      - "chmod +x ./gradlew"
+      - "echo \"Build process start for Android application\""
+      - "echo \"Cleaning..\""
+      - "./gradlew clean"
+      - "echo \"cleanBuildCache..\""
+      - "./gradlew cleanBuildCache"
+      - "echo \"Build .. \""
+      - "./gradlew build"
+      - "echo \"assembleDebug..\""
+      - "./gradlew assembleDebug"
+  post_build:
+    commands:
+      - "echo \"Build process completed\""	  
+artifacts: 
+  files:
+    - '**/*.apk'
+    - "echo \"Copy APK to output folder\""
+  discard-paths: true
+    
